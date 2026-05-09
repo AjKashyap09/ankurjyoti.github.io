@@ -1,10 +1,412 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My First Website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Your Name | Academic Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.7;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+      color: white;
+      padding: 80px 10%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      min-height: 100vh;
+    }
+
+    .hero-text {
+      max-width: 600px;
+    }
+
+    .hero-text h1 {
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+    }
+
+    .hero-text h2 {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: #cbd5e1;
+      margin-bottom: 20px;
+    }
+
+    .hero-text p {
+      margin-bottom: 30px;
+      color: #e2e8f0;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      background: white;
+      color: #1e3a8a;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: 0.3s;
+      margin-right: 15px;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      background: #dbeafe;
+    }
+
+    .profile-img {
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 8px solid rgba(255,255,255,0.2);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: white;
+      padding: 15px 10%;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+      z-index: 1000;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      list-style: none;
+      gap: 25px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #1e293b;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #2563eb;
+    }
+
+    section {
+      padding: 80px 10%;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      text-align: center;
+      color: #0f172a;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      width: 80px;
+      height: 4px;
+      background: #2563eb;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -10px;
+      border-radius: 5px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card h3 {
+      margin-bottom: 15px;
+      color: #1d4ed8;
+    }
+
+    .timeline {
+      border-left: 4px solid #2563eb;
+      margin-left: 20px;
+      padding-left: 30px;
+    }
+
+    .timeline-item {
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      width: 18px;
+      height: 18px;
+      background: #2563eb;
+      border-radius: 50%;
+      position: absolute;
+      left: -41px;
+      top: 5px;
+    }
+
+    .timeline-item h3 {
+      color: #1d4ed8;
+      margin-bottom: 8px;
+    }
+
+    .publication {
+      background: white;
+      padding: 25px;
+      border-left: 5px solid #2563eb;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    }
+
+    .publication a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .skill {
+      background: #dbeafe;
+      color: #1e3a8a;
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-weight: 500;
+    }
+
+    footer {
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .contact-links a {
+      display: inline-block;
+      margin: 10px;
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .contact-links a:hover {
+      color: #60a5fa;
+    }
+
+    @media(max-width: 900px) {
+      header {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 50px;
+      }
+
+      .hero-text h1 {
+        font-size: 2.7rem;
+      }
+
+      .profile-img {
+        width: 250px;
+        height: 250px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to My Website</h1>
-    <p>This website is hosted using GitHub Pages.</p>
+
+  <header>
+    <div class="hero-text">
+      <h1>Dr. Your Name</h1>
+      <h2>Assistant Professor of Mathematics</h2>
+      <p>
+        Research interests include Mathematical Modeling, Fluid Dynamics,
+        Epidemiological Models, MHD Flow, and Nonlinear Systems.
+      </p>
+
+      <a href="#contact" class="btn">Contact Me</a>
+      <a href="#publications" class="btn">Publications</a>
+    </div>
+
+    <img src="profile.jpg" alt="Profile Photo" class="profile-img">
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#conferences">Conferences</a></li>
+      <li><a href="#talks">Invited Talks</a></li>
+      <li><a href="#teaching">Teaching</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+
+    <div class="card">
+      <p>
+        Welcome to my academic webpage. I am passionate about mathematical
+        modeling and interdisciplinary research involving fluid mechanics,
+        epidemiology, and nonlinear dynamics. I actively engage in teaching,
+        research collaborations, and scientific dissemination through
+        conferences and invited lectures.
+      </p>
+    </div>
+  </section>
+
+  <section id="research">
+    <h2 class="section-title">Research Areas</h2>
+
+    <div class="skills">
+      <div class="skill">Mathematical Modeling</div>
+      <div class="skill">Fluid Dynamics</div>
+      <div class="skill">MHD Flow</div>
+      <div class="skill">Epidemiological Modeling</div>
+      <div class="skill">Viscoelastic Fluids</div>
+      <div class="skill">Dengue Transmission Models</div>
+      <div class="skill">Nonlinear Systems</div>
+      <div class="skill">Applied Mathematics</div>
+    </div>
+  </section>
+
+  <section id="publications">
+    <h2 class="section-title">Publications</h2>
+
+    <div class="publication">
+      <h3>Research Paper Title 1</h3>
+      <p>
+        Authors, Journal Name, Volume(Issue), Year.
+      </p>
+      <a href="#">View Publication</a>
+    </div>
+
+    <div class="publication">
+      <h3>Research Paper Title 2</h3>
+      <p>
+        Authors, Journal Name, Volume(Issue), Year.
+      </p>
+      <a href="#">View Publication</a>
+    </div>
+  </section>
+
+  <section id="conferences">
+    <h2 class="section-title">Conferences & Workshops</h2>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <h3>International Conference on Applied Mathematics</h3>
+        <p>Presented research on epidemiological modeling.</p>
+        <small>2025</small>
+      </div>
+
+      <div class="timeline-item">
+        <h3>Workshop on Fluid Mechanics</h3>
+        <p>Participated in advanced mathematical modeling workshop.</p>
+        <small>2024</small>
+      </div>
+    </div>
+  </section>
+
+  <section id="talks">
+    <h2 class="section-title">Invited Talks</h2>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3>Mathematical Modeling in Epidemiology</h3>
+        <p>
+          Invited lecture at XYZ University.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Applications of Fluid Dynamics</h3>
+        <p>
+          Seminar presentation at ABC Institute.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="teaching">
+    <h2 class="section-title">Teaching</h2>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3>Probability & Statistics</h3>
+        <p>Undergraduate and postgraduate teaching.</p>
+      </div>
+
+      <div class="card">
+        <h3>Fluid Mechanics</h3>
+        <p>Advanced mathematical methods and applications.</p>
+      </div>
+
+      <div class="card">
+        <h3>Numerical Methods</h3>
+        <p>Computational approaches and simulations.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Contact</h2>
+
+    <div class="card" style="text-align:center;">
+      <p><strong>Email:</strong> yourname@email.com</p>
+      <p><strong>Department:</strong> Department of Mathematics</p>
+      <p><strong>Institution:</strong> Your University Name</p>
+
+      <div class="contact-links">
+        <a href="#">Google Scholar</a>
+        <a href="#">ORCID</a>
+        <a href="#">ResearchGate</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Dr. Your Name | Academic Portfolio Website</p>
+  </footer>
+
 </body>
 </html>
